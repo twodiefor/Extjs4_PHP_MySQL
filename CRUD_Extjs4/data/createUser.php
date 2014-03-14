@@ -30,7 +30,7 @@ if(isset($request->params))
     
     //update
     $query="INSERT INTO Users (name,lastname,age) VALUES ('$user->name','$user->lastname',$user->age)";
-    $result = mysql_query($query);
+    $result = mysqli_query($con, $query);
     //object response
     $res = new Response();
     $res->success = true;
@@ -38,11 +38,11 @@ if(isset($request->params))
     
     
     //Need to Send USER to EXTjs to be correctly viewd in grid
-    $result = mysql_query("SELECT * FROM Users where userID =".mysql_insert_id());
+    $result = mysqli_query($con, "SELECT * FROM Users where userID =".mysqli_insert_id($con));
     $query_array=array();
     $i=0;
     //Iterate all Select
-    while($row = mysql_fetch_array($result))
+    while($row = mysqli_fetch_array($result))
       {
         //Create New User instance
         $user = new User();

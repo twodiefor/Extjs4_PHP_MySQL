@@ -21,14 +21,14 @@ else
 
 $limit = $_GET['limit'];
 
-$result = mysql_query("SELECT * FROM Users LIMIT $offset, $limit");
-$totalquery = mysql_query("SELECT COUNT(*) FROM Users");
-$total = mysql_fetch_array($totalquery);
+$result = mysqli_query($con, "SELECT * FROM Users LIMIT $offset, $limit");
+$totalquery = mysqli_query($con, "SELECT COUNT(*) FROM Users");
+$total = mysqli_fetch_array($totalquery);
 $total =($total[0]);
 $query_array=array();
 $i=0;
 //Iterate all Select
-while($row = mysql_fetch_array($result))
+while($row = mysqli_fetch_array($result))
   {
     //Create New User instance
     $user = new User();
@@ -42,7 +42,7 @@ while($row = mysql_fetch_array($result))
     $query_array[$i]=$user;
     $i++;
   }
-mysql_close($con);
+mysqli_close($con);
 
 //Creating Json Array needed for Extjs Proxy
 $res = new Response();

@@ -30,7 +30,7 @@ if(isset($request->params))
     
     //Delete
     $query="DELETE FROM Users WHERE userID=$user->userID";
-    $result = mysql_query($query);
+    $result = mysqli_query($con, $query);
     //object response
     $res = new Response();
     $res->success = true;

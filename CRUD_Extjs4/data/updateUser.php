@@ -30,7 +30,7 @@ if(isset($request->params))
     
     //update
     $query="UPDATE Users SET name='$user->name', lastname='$user->lastname', age=$user->age WHERE userID=$user->userID";
-    $result = mysql_query($query);
+    $result = mysqli_query($con, $query);
     //object response
     $res = new Response();
     $res->success = true;
@@ -38,11 +38,11 @@ if(isset($request->params))
     
     
     /////Query Last update TO validate data was updated
-    $result = mysql_query("SELECT * FROM Users where userID =$user->userID");
+    $result = mysqli_query($con, "SELECT * FROM Users where userID =$user->userID");
     $query_array=array();
     $i=0;
     //Iterate all Select
-    while($row = mysql_fetch_array($result))
+    while($row = mysqli_fetch_array($result))
       {
         //Create New User instance
         $user = new User();

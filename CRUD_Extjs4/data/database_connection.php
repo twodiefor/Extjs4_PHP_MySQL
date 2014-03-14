@@ -1,12 +1,11 @@
 <?php
 
-$con = mysql_connect("localhost","root","root");
-if (!$con)
-  {
-  die('Could not connect: ' . mysql_error());
-  }  
+$con = mysqli_connect("localhost","root","root","CRUD_Extjs4");
 
-mysql_select_db("CRUD_Extjs4", $con);
-
+if (mysqli_connect_errno()) {
+    printf("Could not connect: %s\n", mysqli_connect_error());
+    exit();
+}
 
 ?>
+
